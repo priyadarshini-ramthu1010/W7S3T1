@@ -1,15 +1,19 @@
 import React from 'react';
 
-export function Student({ name, age, course }) {
+export function Student({ name, age, course, marks }) {
+  const hasScholarship = marks !== undefined && Number(marks) > 95;
+
   return (
     <div className="card student-card">
       <div className="card-header">
-        <div className="badge badge-student">Student</div>
+        <span className="badge badge-student">Student</span>
+        {hasScholarship && <span className="badge badge-topper animate-pulse animate-glow">🎓 Scholarship</span>}
       </div>
       <h3>{name}</h3>
       <div className="card-body">
         <p><strong>Age:</strong> {age}</p>
         <p><strong>Course:</strong> {course}</p>
+        {marks !== undefined && <p><strong>Marks:</strong> {marks}%</p>}
       </div>
     </div>
   );
@@ -30,6 +34,7 @@ export function StudentList({ students }) {
             name={student.name}
             age={student.age}
             course={student.course}
+            marks={student.marks}
           />
         ))}
       </div>

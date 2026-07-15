@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
 
-// Import components
+// Import components from tasks 1-30
 import { Student, StudentList } from './components/Student';
 import EmployeeCard from './components/EmployeeCard';
 import ProductCard from './components/ProductCard';
@@ -16,8 +16,49 @@ import RestaurantCard from './components/RestaurantCard';
 import JobCard from './components/JobCard';
 import StudentDashboard from './components/StudentDashboard';
 
+// Import components from tasks 31-70
+import { 
+  StatusBadge, 
+  AlertBox, 
+  CustomButton, 
+  NotificationCard 
+} from './components/CommonComponents';
+
+import { 
+  LaptopCard, 
+  MobileCard, 
+  CarCard, 
+  FlightCard, 
+  HotelCard, 
+  DoctorCard, 
+  MedicineCard, 
+  FoodCard, 
+  MovieCardAdult, 
+  CustomerCard, 
+  PlayerCard, 
+  TeacherCard, 
+  BankAccountCard, 
+  BusTicketCard, 
+  OrderCard, 
+  QuizCard, 
+  TaskCard, 
+  PaymentCard, 
+  GymMemberCard, 
+  SubscriptionCard 
+} from './components/SpecializedCards';
+
+import { 
+  EmployeeDirectory, 
+  MovieGallery, 
+  ShoppingCartSummary, 
+  Leaderboard, 
+  CourseCatalog, 
+  MultiRoleDashboard 
+} from './components/BonusModules';
+
 function App() {
   const [activeTab, setActiveTab] = useState('props');
+  const [showcaseFilter, setShowcaseFilter] = useState('all');
 
   // Interactive Lab states (Tasks 11-20)
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -40,11 +81,35 @@ function App() {
     { id: 5, name: 'Mechanical Gaming Keyboard', price: 169, category: 'Peripherals', emoji: '⌨️', stockStatus: 'Available', discountPercentage: 25, isOnSale: true },
   ];
 
+  // Task 61: List of 20 products
+  const twentyProducts = [
+    { id: 1, name: 'MacBook Pro M3 Max', price: 3499, category: 'Electronics', emoji: '💻', stockStatus: 'Available', discountPercentage: 10, isFeatured: true, isOnSale: false },
+    { id: 2, name: 'Nothing Phone (2)', price: 599, category: 'Electronics', emoji: '📱', stockStatus: 'Available', discountPercentage: 0, isFeatured: false, isOnSale: true },
+    { id: 3, name: 'Tesla Model Y', price: 44990, category: 'Automotive', emoji: '🚗', stockStatus: 'Available', discountPercentage: 0, isFeatured: true, isOnSale: false },
+    { id: 4, name: 'Rolex Daytona', price: 14500, category: 'Luxury', emoji: '⌚', stockStatus: 'Out of Stock', discountPercentage: 0, isFeatured: true, isOnSale: false },
+    { id: 5, name: 'AirPods Max', price: 549, category: 'Audio', emoji: '🎧', stockStatus: 'Available', discountPercentage: 15, isFeatured: false, isOnSale: true },
+    { id: 6, name: 'Herman Miller Embody', price: 1800, category: 'Furniture', emoji: '🪑', stockStatus: 'Available', discountPercentage: 5, isFeatured: true, isOnSale: false },
+    { id: 7, name: 'Nike Air Jordan 1', price: 180, category: 'Apparel', emoji: '👟', stockStatus: 'Available', discountPercentage: 20, isFeatured: false, isOnSale: true },
+    { id: 8, name: 'iPad Pro 11-inch', price: 799, category: 'Electronics', emoji: '📱', stockStatus: 'Available', discountPercentage: 0, isFeatured: false, isOnSale: false },
+    { id: 9, name: 'GoPro Hero 12 Black', price: 399, category: 'Camera', emoji: '📹', stockStatus: 'Out of Stock', discountPercentage: 0, isFeatured: false, isOnSale: false },
+    { id: 10, name: 'Kindle Scribe', price: 339, category: 'Electronics', emoji: '📚', stockStatus: 'Available', discountPercentage: 10, isFeatured: false, isOnSale: true },
+    { id: 11, name: 'DJI Avata 2', price: 999, category: 'Drones', emoji: '🛸', stockStatus: 'Available', discountPercentage: 0, isFeatured: true, isOnSale: false },
+    { id: 12, name: 'Sony PlayStation 5 Slim', price: 449, category: 'Gaming', emoji: '🎮', stockStatus: 'Available', discountPercentage: 0, isFeatured: true, isOnSale: false },
+    { id: 13, name: 'Steam Deck OLED', price: 549, category: 'Gaming', emoji: '🎮', stockStatus: 'Available', discountPercentage: 8, isFeatured: false, isOnSale: true },
+    { id: 14, name: 'Secretlab Titan Evo', price: 549, category: 'Furniture', emoji: '🪑', stockStatus: 'Out of Stock', discountPercentage: 0, isFeatured: false, isOnSale: false },
+    { id: 15, name: 'Fitbit Charge 6', price: 159, category: 'Wearables', emoji: '⌚', stockStatus: 'Available', discountPercentage: 12, isFeatured: false, isOnSale: true },
+    { id: 16, name: 'Logitech MX Master 3S', price: 99, category: 'Peripherals', emoji: '🖱️', stockStatus: 'Available', discountPercentage: 0, isFeatured: false, isOnSale: false },
+    { id: 17, name: 'Razer Blade 16', price: 2999, category: 'Gaming', emoji: '💻', stockStatus: 'Available', discountPercentage: 0, isFeatured: true, isOnSale: false },
+    { id: 18, name: 'Yeti Roadie 24 Cooler', price: 250, category: 'Gear', emoji: '📦', stockStatus: 'Available', discountPercentage: 0, isFeatured: false, isOnSale: false },
+    { id: 19, name: 'Theragun PRO G5', price: 599, category: 'Health', emoji: '🔫', stockStatus: 'Available', discountPercentage: 15, isFeatured: false, isOnSale: true },
+    { id: 20, name: 'Dyson Supersonic', price: 429, category: 'Beauty', emoji: '💇', stockStatus: 'Out of Stock', discountPercentage: 0, isFeatured: true, isOnSale: false },
+  ];
+
   const arrayStudents = [
-    { name: 'Sarah Connor', age: 21, course: 'Robotics Engineering' },
-    { name: 'Kenji Sato', age: 19, course: 'Machine Learning' },
-    { name: 'Maya Lin', age: 22, course: 'Data Visualization' },
-    { name: 'Carlos Diaz', age: 20, course: 'Cybersecurity' }
+    { name: 'Sarah Connor', age: 21, course: 'Robotics Engineering', marks: 98 },
+    { name: 'Kenji Sato', age: 19, course: 'Machine Learning', marks: 88 },
+    { name: 'Maya Lin', age: 22, course: 'Data Visualization', marks: 96 },
+    { name: 'Carlos Diaz', age: 20, course: 'Cybersecurity', marks: 74 }
   ];
 
   const companyObject = {
@@ -57,7 +122,6 @@ function App() {
     website: 'novatech.io'
   };
 
-  // Helper for greeting icon & text (Task 19)
   const getGreetingData = (time) => {
     switch (time) {
       case 'Morning':
@@ -78,8 +142,8 @@ function App() {
       <header>
         <h1>React Card Component & Conditional Lab</h1>
         <p>
-          A state-of-the-art interactive playground demonstrating 30 tasks in React. 
-          Modify props, toggle states, and examine conditional rendering rules in real-time.
+          An advanced interactive playground demonstrating all 70 tasks in React. 
+          Modify props, toggle states, inspect directories, and verify conditional badges live.
         </p>
       </header>
 
@@ -89,149 +153,201 @@ function App() {
           className={`tab-btn ${activeTab === 'props' ? 'active' : ''}`}
           onClick={() => setActiveTab('props')}
         >
-          📂 Basic Props (Tasks 1-10)
+          📂 Card Showcase (Tasks 1-10, 21-29, 31-59)
         </button>
         <button 
           className={`tab-btn ${activeTab === 'conditional' ? 'active' : ''}`}
           onClick={() => setActiveTab('conditional')}
         >
-          🧪 Conditional Rendering Lab (Tasks 11-20)
-        </button>
-        <button 
-          className={`tab-btn ${activeTab === 'combined' ? 'active' : ''}`}
-          onClick={() => setActiveTab('combined')}
-        >
-          ⚙️ Combined Logic (Tasks 21-29)
+          🧪 Interactive Lab (Tasks 11-20, 62-64)
         </button>
         <button 
           className={`tab-btn ${activeTab === 'dashboard' ? 'active' : ''}`}
           onClick={() => setActiveTab('dashboard')}
         >
-          📊 Student Dashboard (Task 30)
+          📊 Dashboards & Directories (Tasks 30, 60, 65, 70)
+        </button>
+        <button 
+          className={`tab-btn ${activeTab === 'bonus' ? 'active' : ''}`}
+          onClick={() => setActiveTab('bonus')}
+        >
+          🛍️ Galleries & Catalogs (Tasks 61, 66-69)
         </button>
       </div>
 
       {/* Tab Contents */}
       <div className="tab-content">
         
-        {/* TAB 1: BASIC PROPS */}
+        {/* TAB 1: CARD SHOWCASE */}
         {activeTab === 'props' && (
           <div className="animate-fade-in">
-            <h2 className="section-title">Tasks 1-10: Component Prop Foundations</h2>
-            
-            <div className="grid-3">
-              {/* Task 1 */}
-              <div className="card-demo-box">
-                <div className="demo-title-badge">Task 1: Basic Student</div>
-                <Student name="Alice Smith" age={20} course="Software Engineering" />
-              </div>
-
-              {/* Task 2 */}
-              <div className="card-demo-box">
-                <div className="demo-title-badge">Task 2: Employee Card</div>
-                <EmployeeCard 
-                  name="Marcus Vance" 
-                  designation="Lead UX Designer" 
-                  salary={115000} 
-                  department="Product Design" 
-                />
-              </div>
-
-              {/* Task 4 */}
-              <div className="card-demo-box">
-                <div className="demo-title-badge">Task 4: Movie Card</div>
-                <MovieCard 
-                  title="Interstellar" 
-                  poster="https://images.unsplash.com/photo-1534447677768-be436bb09401?w=400&q=80" 
-                  rating={8.7} 
-                  genre="Sci-Fi" 
-                />
-              </div>
-
-              {/* Task 5 */}
-              <div className="card-demo-box">
-                <div className="demo-title-badge">Task 5: Book Card</div>
-                <BookCard 
-                  title="The Hobbit" 
-                  author="J.R.R. Tolkien" 
-                  price={14.99} 
-                  category="Fantasy Fiction" 
-                />
-              </div>
-
-              {/* Task 6 */}
-              <div className="card-demo-box">
-                <div className="demo-title-badge">Task 6: Course Card</div>
-                <CourseCard 
-                  courseName="Fullstack React Native" 
-                  trainer="Dr. Angela Yu" 
-                  duration="42 Hours" 
-                  fee={199.99} 
-                />
-              </div>
-
-              {/* Task 7 */}
-              <div className="card-demo-box">
-                <div className="demo-title-badge">Task 7: Profile Card</div>
-                <ProfileCard 
-                  name="Clara Oswald" 
-                  role="Software Architect" 
-                  location="London, UK" 
-                />
-              </div>
-
-              {/* Task 9 */}
-              <div className="card-demo-box">
-                <div className="demo-title-badge">Task 9: Company Object Prop</div>
-                <CompanyCard company={companyObject} />
-              </div>
-
-              {/* Task 10 */}
-              <div className="card-demo-box">
-                <div className="demo-title-badge">Task 10: Custom Button Components</div>
-                <div className="card" style={{ display: 'flex', gap: '10px', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '180px' }}>
-                  <Button text="Click Me" onClick={() => alert('Primary Clicked')} variant="primary" />
-                  <Button text="Warning Action" onClick={() => alert('Secondary Clicked')} variant="secondary" />
-                  <Button text="Delete Account" onClick={() => alert('Danger Clicked')} variant="danger" />
-                </div>
-              </div>
-            </div>
-
-            {/* Task 8 */}
-            <div className="card-demo-box" style={{ marginTop: '24px' }}>
-              <div className="demo-title-badge">Task 8: Array of Student Objects Props</div>
-              <StudentList students={arrayStudents} />
-            </div>
-
-            {/* Task 3 */}
-            <div className="card-demo-box" style={{ marginTop: '30px' }}>
-              <div className="demo-title-badge">Task 3: Display 5 Different Products via different props</div>
-              <div className="grid-3" style={{ marginTop: '16px' }}>
-                {fiveProducts.map(prod => (
-                  <ProductCard 
-                    key={prod.id}
-                    name={prod.name}
-                    price={prod.price}
-                    category={prod.category}
-                    emoji={prod.emoji}
-                    stockStatus={prod.stockStatus}
-                    discountPercentage={prod.discountPercentage}
-                    isOnSale={prod.isOnSale}
-                  />
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px', flexWrap: 'wrap', gap: '12px' }}>
+              <h2 className="section-title" style={{ margin: 0, border: 'none', padding: 0 }}>Prop-driven Card Showcase</h2>
+              <div style={{ display: 'flex', gap: '8px' }}>
+                {['all', 'devices', 'finance & travel', 'medical & food', 'personal & others'].map(cat => (
+                  <button 
+                    key={cat} 
+                    className={`tab-btn btn-sm ${showcaseFilter === cat ? 'active' : ''}`} 
+                    onClick={() => setShowcaseFilter(cat)}
+                    style={{ textTransform: 'capitalize' }}
+                  >
+                    {cat}
+                  </button>
                 ))}
               </div>
             </div>
+
+            <div className="grid-3">
+              {/* Category: Devices & Automotive */}
+              {(showcaseFilter === 'all' || showcaseFilter === 'devices') && (
+                <>
+                  <div className="card-demo-box">
+                    <div className="demo-title-badge">Task 1: Basic Student</div>
+                    <Student name="Alice Smith" age={20} course="Software Engineering" />
+                  </div>
+                  <div className="card-demo-box">
+                    <div className="demo-title-badge">Task 31: Laptop Card (RAM &gt;= 16GB)</div>
+                    <LaptopCard brand="Razer" model="Blade 16" ram="16GB" price={2999} />
+                  </div>
+                  <div className="card-demo-box">
+                    <div className="demo-title-badge">Task 32: Mobile Card (5G supported)</div>
+                    <MobileCard brand="Samsung" model="S24 Ultra" supports5G={true} price={1299} />
+                  </div>
+                  <div className="card-demo-box">
+                    <div className="demo-title-badge">Task 33: Car Card (Electric)</div>
+                    <CarCard make="Tesla" model="Model S Plaid" fuelType="Electric" price={89990} />
+                  </div>
+                </>
+              )}
+
+              {/* Category: Finance, Travel & Booking */}
+              {(showcaseFilter === 'all' || showcaseFilter === 'finance & travel') && (
+                <>
+                  <div className="card-demo-box">
+                    <div className="demo-title-badge">Task 34: Flight Card (Seats)</div>
+                    <FlightCard flightNo="AA-240" destination="New York" availableSeats={12} />
+                  </div>
+                  <div className="card-demo-box">
+                    <div className="demo-title-badge">Task 35: Hotel Card (Breakfast)</div>
+                    <HotelCard name="Hilton Tokyo" rating={5} price={350} breakfastIncluded={true} />
+                  </div>
+                  <div className="card-demo-box">
+                    <div className="demo-title-badge">Task 45: Bank Account (Warning &lt; ₹1000)</div>
+                    <BankAccountCard accNo="123456789012" holderName="Priya Ramthu" balance={850} />
+                  </div>
+                  <div className="card-demo-box">
+                    <div className="demo-title-badge">Task 46: Bus Ticket Status</div>
+                    <BusTicketCard ticketId="TX-949" from="Austin" to="Dallas" status="Confirmed" />
+                  </div>
+                  <div className="card-demo-box">
+                    <div className="demo-title-badge">Task 47: Order Status Card (Delivered)</div>
+                    <OrderCard orderId="ORD-2391" itemsCount={4} total={185.00} status="Delivered" />
+                  </div>
+                  <div className="card-demo-box">
+                    <div className="demo-title-badge">Task 54: Payment Status (Pending)</div>
+                    <PaymentCard invoiceNo="INV-4011" amount={450.00} isPaid={false} />
+                  </div>
+                </>
+              )}
+
+              {/* Category: Medical & Food */}
+              {(showcaseFilter === 'all' || showcaseFilter === 'medical & food') && (
+                <>
+                  <div className="card-demo-box">
+                    <div className="demo-title-badge">Task 36: Doctor Card</div>
+                    <DoctorCard name="Stephen Strange" specialty="Neurosurgeon" isAvailable={true} />
+                  </div>
+                  <div className="card-demo-box">
+                    <div className="demo-title-badge">Task 37: Medicine Card (Prescription)</div>
+                    <MedicineCard name="Amoxicillin" dosage="500mg" requiresPrescription={true} />
+                  </div>
+                  <div className="card-demo-box">
+                    <div className="demo-title-badge">Task 38: Food Card (Veg/Non-Veg)</div>
+                    <FoodCard name="Paneer Butter Masala" category="Main Course" isVeg={true} />
+                  </div>
+                </>
+              )}
+
+              {/* Category: Personal, Sports & Subscriptions */}
+              {(showcaseFilter === 'all' || showcaseFilter === 'personal & others') && (
+                <>
+                  <div className="card-demo-box">
+                    <div className="demo-title-badge">Task 39: Movie Adult Warning (18+)</div>
+                    <MovieCardAdult title="Deadpool & Wolverine" ratingValue={8.1} genre="Action Comedy" isAdult={true} />
+                  </div>
+                  <div className="card-demo-box">
+                    <div className="demo-title-badge">Task 42: Customer Loyalty (Silver Tier)</div>
+                    <CustomerCard name="Clara Oswald" points={750} />
+                  </div>
+                  <div className="card-demo-box">
+                    <div className="demo-title-badge">Task 43: Player Card (Captain)</div>
+                    <PlayerCard name="Lionel Messi" position="Forward" isCaptain={true} />
+                  </div>
+                  <div className="card-demo-box">
+                    <div className="demo-title-badge">Task 44: Teacher Card (HOD)</div>
+                    <TeacherCard name="Dr. Evelyn Carter" subject="Quantum Physics" designation="Head of Department" />
+                  </div>
+                  <div className="card-demo-box">
+                    <div className="demo-title-badge">Task 50: Quiz Card Status</div>
+                    <QuizCard title="HTML & CSS Essentials" subject="Frontend Web" status="Completed" />
+                  </div>
+                  <div className="card-demo-box">
+                    <div className="demo-title-badge">Task 51: Task Priority Card</div>
+                    <TaskCard title="Deploy server to staging environment" priority="High" />
+                  </div>
+                  <div className="card-demo-box">
+                    <div className="demo-title-badge">Task 58: Gym Expiry Warning</div>
+                    <GymMemberCard name="John Smith" expiryDate="2025-12-31" />
+                  </div>
+                  <div className="card-demo-box">
+                    <div className="demo-title-badge">Task 59: Subscription Status (Renew Soon)</div>
+                    <SubscriptionCard serviceName="Netflix Premium" status="Renew Soon" />
+                  </div>
+                  <div className="card-demo-box">
+                    <div className="demo-title-badge">Task 9: Company Info</div>
+                    <CompanyCard company={companyObject} />
+                  </div>
+                </>
+              )}
+            </div>
+
+            {/* Existing Cards Mapped lists */}
+            {showcaseFilter === 'all' && (
+              <>
+                <div className="card-demo-box" style={{ marginTop: '24px' }}>
+                  <div className="demo-title-badge">Task 8 & 55: Student List (Scholarship badge &gt; 95%)</div>
+                  <StudentList students={arrayStudents} />
+                </div>
+
+                <div className="card-demo-box" style={{ marginTop: '30px' }}>
+                  <div className="demo-title-badge">Task 3 & 56: Product List (Free Delivery &gt; $500)</div>
+                  <div className="grid-3" style={{ marginTop: '16px' }}>
+                    {fiveProducts.map(prod => (
+                      <ProductCard 
+                        key={prod.id}
+                        name={prod.name}
+                        price={prod.price}
+                        category={prod.category}
+                        emoji={prod.emoji}
+                        stockStatus={prod.stockStatus}
+                        discountPercentage={prod.discountPercentage}
+                        isOnSale={prod.isOnSale}
+                      />
+                    ))}
+                  </div>
+                </div>
+              </>
+            )}
           </div>
         )}
 
-        {/* TAB 2: CONDITIONAL RENDERING LAB */}
+        {/* TAB 2: INTERACTIVE LAB */}
         {activeTab === 'conditional' && (
           <div className="playground-layout animate-fade-in">
             {/* Sidebar Knobs */}
             <div className="control-panel">
               <h3>Lab Parameters</h3>
               
-              {/* Task 11 */}
               <div className="control-group">
                 <label className="toggle-label">
                   <input 
@@ -244,7 +360,6 @@ function App() {
                 </label>
               </div>
 
-              {/* Task 12 */}
               <div className="control-group">
                 <label>Stock Status (Task 12)</label>
                 <select 
@@ -257,9 +372,8 @@ function App() {
                 </select>
               </div>
 
-              {/* Task 13 */}
               <div className="control-group">
-                <label>Marks: {marks} (Task 13)</label>
+                <label>Marks: {marks} (Task 13 & 55)</label>
                 <input 
                   type="range" 
                   min="0" 
@@ -270,7 +384,6 @@ function App() {
                 />
               </div>
 
-              {/* Task 14 */}
               <div className="control-group">
                 <label>Age: {age} (Task 14)</label>
                 <input 
@@ -283,7 +396,6 @@ function App() {
                 />
               </div>
 
-              {/* Task 15 */}
               <div className="control-group">
                 <label className="toggle-label">
                   <input 
@@ -296,7 +408,6 @@ function App() {
                 </label>
               </div>
 
-              {/* Task 16 */}
               <div className="control-group">
                 <label>Discount %: {discountPercentage}% (Task 16)</label>
                 <input 
@@ -309,7 +420,6 @@ function App() {
                 />
               </div>
 
-              {/* Task 17 */}
               <div className="control-group">
                 <label className="toggle-label">
                   <input 
@@ -322,7 +432,6 @@ function App() {
                 </label>
               </div>
 
-              {/* Task 18 */}
               <div className="control-group">
                 <label>User Role (Task 18)</label>
                 <select 
@@ -335,7 +444,6 @@ function App() {
                 </select>
               </div>
 
-              {/* Task 19 */}
               <div className="control-group">
                 <label>Simulated Time (Task 19)</label>
                 <select 
@@ -349,7 +457,6 @@ function App() {
                 </select>
               </div>
 
-              {/* Task 20 */}
               <div className="control-group">
                 <label className="toggle-label">
                   <input 
@@ -366,6 +473,42 @@ function App() {
             {/* Display Results */}
             <div className="playground-display">
               
+              {/* Task 62 & 63 Demonstration */}
+              <div className="card-demo-box">
+                <div className="demo-title-badge">Tasks 62 & 63: Reusable Badges & Alert Boxes</div>
+                <div style={{ display: 'flex', gap: '8px', marginBottom: '16px', flexWrap: 'wrap' }}>
+                  <StatusBadge status="Success" />
+                  <StatusBadge status="Pending" />
+                  <StatusBadge status="Error" />
+                  <StatusBadge status="Info" />
+                </div>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                  <AlertBox type="Success" message="System operation completed successfully." />
+                  <AlertBox type="Error" message="Unable to establish database connection." />
+                  <AlertBox type="Warning" message="Server resource limits approaching 90% threshold." />
+                </div>
+              </div>
+
+              {/* Task 64 Custom Buttons */}
+              <div className="card-demo-box">
+                <div className="demo-title-badge">Task 64: Reusable Multi-Design Buttons</div>
+                <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
+                  <CustomButton label="Success Large" color="green" size="large" onClick={() => alert('Success')} />
+                  <CustomButton label="Danger Normal" color="red" size="medium" onClick={() => alert('Danger')} />
+                  <CustomButton label="Special Pink Small" color="pink" size="small" onClick={() => alert('Pink')} />
+                  <CustomButton label="Gray Bordered" color="gray" size="medium" onClick={() => alert('Gray')} />
+                </div>
+              </div>
+
+              {/* Task 52 Notification cards */}
+              <div className="card-demo-box">
+                <div className="demo-title-badge">Task 52: Dynamic Notifications</div>
+                <div className="grid-2" style={{ marginBottom: 0 }}>
+                  <NotificationCard type="Success" title="Transaction Approved" message="Payment of $24.50 processed securely." />
+                  <NotificationCard type="Error" title="Connection Timeout" message="Unable to sync local profiles to remote servers." />
+                </div>
+              </div>
+
               {/* Task 11 */}
               <div className="card-demo-box">
                 <div className="demo-title-badge">Task 11: Auth Alert</div>
@@ -394,17 +537,20 @@ function App() {
                 </div>
               </div>
 
-              {/* Task 13 */}
+              {/* Task 13 & 55 */}
               <div className="card-demo-box">
-                <div className="demo-title-badge">Task 13: Exam Results (Pass/Fail)</div>
-                <div className="card" style={{ display: 'flex', gap: '10px', alignItems: 'center', minHeight: '80px', flexDirection: 'row', justifyContent: 'space-between' }}>
-                  <div>
-                    <h3 style={{ margin: 0 }}>Exam Score</h3>
-                    <p style={{ margin: '4px 0 0 0' }}>Score: {marks} / 100</p>
+                <div className="demo-title-badge">Task 13 & 55: Exam Results & Scholarship Badge</div>
+                <div className="grid-2" style={{ marginBottom: 0 }}>
+                  <div className="card" style={{ display: 'flex', gap: '10px', alignItems: 'center', minHeight: '80px', flexDirection: 'row', justifyContent: 'space-between' }}>
+                    <div>
+                      <h3 style={{ margin: 0 }}>Exam Score</h3>
+                      <p style={{ margin: '4px 0 0 0' }}>Score: {marks} / 100</p>
+                    </div>
+                    <span className={`badge ${marks >= 35 ? 'badge-pass' : 'badge-fail'}`} style={{ fontSize: '1.1rem', padding: '10px 20px' }}>
+                      {marks >= 35 ? 'Pass' : 'Fail'}
+                    </span>
                   </div>
-                  <span className={`badge ${marks >= 35 ? 'badge-pass' : 'badge-fail'}`} style={{ fontSize: '1.1rem', padding: '10px 20px' }}>
-                    {marks >= 35 ? 'Pass' : 'Fail'}
-                  </span>
+                  <Student name="Interactive Student" age={19} course="Computer Science" marks={marks} />
                 </div>
               </div>
 
@@ -509,215 +655,58 @@ function App() {
           </div>
         )}
 
-        {/* TAB 3: COMBINED PROPS AND CONDITIONAL RENDER CARDS */}
-        {activeTab === 'combined' && (
-          <div className="animate-fade-in">
-            <h2 className="section-title">Tasks 21-29: Combined Logic Cards</h2>
+        {/* TAB 3: DASHBOARDS & DIRECTORIES */}
+        {activeTab === 'dashboard' && (
+          <div className="animate-fade-in" style={{ display: 'flex', flexDirection: 'column', gap: '30px' }}>
+            {/* Task 70: Multi-Role Portal */}
+            <MultiRoleDashboard />
             
-            <div className="grid-3">
-              {/* Task 21 */}
-              <div className="card-demo-box">
-                <div className="demo-title-badge">Task 21: Student Card (Topper Badge &gt; 90)</div>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-                  {/* Topper Student */}
-                  <div className="card">
-                    <div className="card-header">
-                      <span className="badge badge-student">Math Major</span>
-                      <span className="badge badge-topper animate-glow">🏆 Topper</span>
-                    </div>
-                    <h3>Priya Sharma</h3>
-                    <p><strong>Marks:</strong> 95 / 100</p>
-                  </div>
-                  {/* Regular Student */}
-                  <div className="card">
-                    <div className="card-header">
-                      <span className="badge badge-student">History Major</span>
-                    </div>
-                    <h3>Pranitha Reddy</h3>
-                    <p><strong>Marks:</strong> 72 / 100</p>
-                  </div>
-                </div>
-              </div>
+            {/* Task 65: Employee Directory */}
+            <EmployeeDirectory />
 
-              {/* Task 22 */}
-              <div className="card-demo-box">
-                <div className="demo-title-badge">Task 22: Employee Card (Senior &gt; 5 yrs)</div>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-                  {/* Senior Employee */}
-                  <EmployeeCard 
-                    name="Amanda Waller" 
-                    designation="Director" 
-                    salary={145000} 
-                    department="Operations" 
-                    experience={8} 
-                  />
-                  {/* Junior Employee */}
-                  <EmployeeCard 
-                    name="John Blake" 
-                    designation="Associate Officer" 
-                    salary={65000} 
-                    department="Operations" 
-                    experience={2} 
-                  />
-                </div>
-              </div>
-
-              {/* Task 23 */}
-              <div className="card-demo-box">
-                <div className="demo-title-badge">Task 23: Movie Card (Blockbuster &gt; 8.5)</div>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-                  {/* Blockbuster Movie */}
-                  <MovieCard 
-                    title="Inception" 
-                    rating={8.8} 
-                    genre="Sci-Fi Thriller" 
-                  />
-                  {/* Standard Movie */}
-                  <MovieCard 
-                    title="The Avengers" 
-                    rating={8.0} 
-                    genre="Action" 
-                  />
-                </div>
-              </div>
-
-              {/* Task 24 */}
-              <div className="card-demo-box">
-                <div className="demo-title-badge">Task 24: Product Card (Sale Badge)</div>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-                  {/* Sale Product */}
-                  <ProductCard 
-                    name="Fitbit Charge 6" 
-                    price={159} 
-                    category="Fitness" 
-                    emoji="⌚"
-                    stockStatus="Available"
-                    isOnSale={true} 
-                  />
-                  {/* Normal Product */}
-                  <ProductCard 
-                    name="Yoga Mat" 
-                    price={35} 
-                    category="Fitness" 
-                    emoji="🧘"
-                    stockStatus="Available"
-                    isOnSale={false} 
-                  />
-                </div>
-              </div>
-
-              {/* Task 25 */}
-              <div className="card-demo-box">
-                <div className="demo-title-badge">Task 25: Course Card (Enrollment Closed)</div>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-                  {/* Course Full */}
-                  <CourseCard 
-                    courseName="Deep Learning Bootcamp" 
-                    trainer="Andrew Ng" 
-                    duration="80 Hours" 
-                    fee={350} 
-                    seatsBooked={50}
-                    seatsTotal={50} 
-                  />
-                  {/* Course Open */}
-                  <CourseCard 
-                    courseName="Prompt Engineering 101" 
-                    trainer="Sam Altman" 
-                    duration="10 Hours" 
-                    fee={49} 
-                    seatsBooked={24}
-                    seatsTotal={100} 
-                  />
-                </div>
-              </div>
-
-              {/* Task 26 */}
-              <div className="card-demo-box">
-                <div className="demo-title-badge">Task 26: Restaurant Card (Business Hours)</div>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-                  {/* Open Restaurant */}
-                  <RestaurantCard 
-                    name="Le Bistro Parisien" 
-                    cuisine="French" 
-                    rating={4.8} 
-                    openingHour={9}
-                    closingHour={22}
-                    currentHour={13} 
-                  />
-                  {/* Closed Restaurant */}
-                  <RestaurantCard 
-                    name="Late Night Tacos" 
-                    cuisine="Mexican" 
-                    rating={4.5} 
-                    openingHour={18}
-                    closingHour={2}
-                    currentHour={10} 
-                  />
-                </div>
-              </div>
-
-              {/* Task 27 */}
-              <div className="card-demo-box">
-                <div className="demo-title-badge">Task 27: Weather Card Conditions</div>
-                <div className="grid-3" style={{ gridTemplateColumns: '1fr', gap: '12px' }}>
-                  <WeatherCard city="Tokyo" temperature={28} condition="Sunny" />
-                  <WeatherCard city="Seattle" temperature={14} condition="Heavy Rain" />
-                  <WeatherCard city="London" temperature={18} condition="Cloudy Overcast" />
-                </div>
-              </div>
-
-              {/* Task 28 */}
-              <div className="card-demo-box">
-                <div className="demo-title-badge">Task 28: Profile Card (Verified User Badge)</div>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-                  {/* Verified User */}
-                  <ProfileCard 
-                    name="Tony Stark" 
-                    role="Tech Billionaire" 
-                    location="Malibu, California" 
-                    isVerified={true}
-                    isActive={true}
-                  />
-                  {/* Regular User */}
-                  <ProfileCard 
-                    name="Ned Leeds" 
-                    role="Associate Intern" 
-                    location="Queens, NY" 
-                    isVerified={false}
-                    isActive={false}
-                  />
-                </div>
-              </div>
-
-              {/* Task 29 */}
-              <div className="card-demo-box">
-                <div className="demo-title-badge">Task 29: Job Card (Remote / On-site)</div>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-                  {/* Remote Job */}
-                  <JobCard 
-                    title="Senior React Developer" 
-                    company="Vercel" 
-                    location="San Francisco, CA" 
-                    jobType="Remote" 
-                  />
-                  {/* On-site Job */}
-                  <JobCard 
-                    title="System Operations Intern" 
-                    company="Tesla Factory" 
-                    location="Austin, TX" 
-                    jobType="On-site" 
-                  />
-                </div>
-              </div>
-
-            </div>
+            {/* Task 30 & 60: Student Dashboard */}
+            <StudentDashboard />
           </div>
         )}
 
-        {/* TAB 4: STUDENT MANAGEMENT DASHBOARD */}
-        {activeTab === 'dashboard' && (
-          <div className="animate-fade-in">
-            <StudentDashboard />
+        {/* TAB 4: BONUS MODULES (GALLERIES & CATALOGS) */}
+        {activeTab === 'bonus' && (
+          <div className="animate-fade-in" style={{ display: 'flex', flexDirection: 'column', gap: '30px' }}>
+            
+            {/* Task 69: Course Catalog */}
+            <CourseCatalog />
+
+            {/* Task 68: Leaderboard */}
+            <Leaderboard />
+
+            {/* Task 67: Shopping Cart Summary */}
+            <ShoppingCartSummary />
+
+            {/* Task 66: Movie Gallery */}
+            <MovieGallery />
+
+            {/* Task 61: 20 Products Conditional Badges Grid */}
+            <div className="products-grid-20 card" style={{ background: 'rgba(31, 41, 55, 0.4)' }}>
+              <h3>🛍️ 20-Product Conditional Badges Grid (Task 61)</h3>
+              <p className="text-secondary" style={{ marginBottom: '20px' }}>Mapping 20 products conditionally rendering Featured (Gold), Sale (Red), and Out of Stock (Grey) badges</p>
+              
+              <div className="grid-3">
+                {twentyProducts.map(prod => (
+                  <ProductCard 
+                    key={prod.id}
+                    name={prod.name}
+                    price={prod.price}
+                    category={prod.category}
+                    emoji={prod.emoji}
+                    stockStatus={prod.stockStatus}
+                    discountPercentage={prod.discountPercentage}
+                    isOnSale={prod.isOnSale}
+                    isFeatured={prod.isFeatured}
+                  />
+                ))}
+              </div>
+            </div>
+
           </div>
         )}
 

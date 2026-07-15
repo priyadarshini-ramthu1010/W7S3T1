@@ -5,27 +5,33 @@ export default function ProductCard({
   price, 
   category, 
   emoji = '📦', 
-  stockStatus, // e.g. 'Available', 'Out of Stock', or boolean
+  stockStatus, 
   discountPercentage = 0, 
-  isOnSale = false 
+  isOnSale = false,
+  isFeatured = false
 }) {
-  const isAvailable = stockStatus === 'Available' || stockStatus === true;
-  const originalPrice = Number(price);
+  const isAvailable = stockStatus === 'Available' || stockStatus === true || stockStatus === undefined;
+  const originalPrice = Number(price || 0);
   const discountedPrice = discountPercentage > 0 
     ? originalPrice * (1 - discountPercentage / 100) 
     : originalPrice;
+
+  // Task 56: Free delivery if order value exceeds 500 (representing dollars or rupees based on locale)
+  const isFreeDelivery = discountedPrice > 500;
 
   return (
     <div className={`card product-card ${!isAvailable ? 'out-of-stock-card' : ''}`}>
       <div className="card-header">
         <span className="badge badge-product">{category}</span>
         <div className="product-badges">
+          {isFeatured && <span className="badge badge-topper">Featured</span>}
           {isOnSale && <span className="badge badge-sale animate-pulse">SALE</span>}
           {discountPercentage > 0 && (
             <span className="badge badge-discount">
               {discountPercentage}% OFF
             </span>
           )}
+          {isFreeDelivery && <span className="badge badge-open">🚚 Free Delivery</span>}
         </div>
       </div>
       

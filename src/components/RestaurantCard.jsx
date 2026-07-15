@@ -1,9 +1,16 @@
 import React from 'react';
 
-export default function RestaurantCard({ name, cuisine, rating, openingHour, closingHour, currentHour }) {
-  // Check if open. If currentHour is between openingHour and closingHour
-  const openHour = Number(openingHour || 9);
-  const closeHour = Number(closingHour || 22);
+export default function RestaurantCard({ 
+  name, 
+  cuisine, 
+  rating, 
+  openingHour = 9, 
+  closingHour = 22, 
+  currentHour,
+  hasHomeDelivery = false 
+}) {
+  const openHour = Number(openingHour);
+  const closeHour = Number(closingHour);
   const currHour = Number(currentHour !== undefined ? currentHour : new Date().getHours());
 
   const isOpen = currHour >= openHour && currHour < closeHour;
@@ -12,11 +19,13 @@ export default function RestaurantCard({ name, cuisine, rating, openingHour, clo
     <div className={`card restaurant-card ${isOpen ? 'restaurant-open' : 'restaurant-closed'}`}>
       <div className="card-header">
         <span className="badge badge-cuisine">{cuisine}</span>
-        {isOpen ? (
-          <span className="badge badge-open-now animate-pulse">● Open Now</span>
-        ) : (
-          <span className="badge badge-closed-now">Closed</span>
-        )}
+        <div className="badge-group">
+          {isOpen ? (
+            <span className="badge badge-open-now animate-pulse">● Open Now</span>
+          ) : (
+            <span className="badge badge-closed-now">Closed</span>
+          )}
+        </div>
       </div>
 
       <div className="restaurant-body">
@@ -28,9 +37,13 @@ export default function RestaurantCard({ name, cuisine, rating, openingHour, clo
         <p className="hours-info">
           Hours: {openHour}:00 AM - {closeHour - 12}:00 PM
         </p>
-        <p className="current-time-status text-muted">
-          Simulated time: {currHour}:00
-        </p>
+        
+        {/* Task 57: Home Delivery Available badge */}
+        {hasHomeDelivery && (
+          <div className="badge badge-open" style={{ marginTop: '10px', width: 'fit-content' }}>
+            🚀 Home Delivery Available
+          </div>
+        )}
       </div>
     </div>
   );
